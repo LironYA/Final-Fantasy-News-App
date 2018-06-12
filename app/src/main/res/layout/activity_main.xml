@@ -1,22 +1,28 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.android.finalfantasynewsapp.MainActivity"
-    android:id="@+id/list"
-        android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/list"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
-    android:divider="@color/colorAccent"
-    android:dividerHeight="1dp"
-    android:drawSelectorOnTop="true"/>
+        android:layout_marginBottom="5dp"
+        android:divider="@color/divider"
+        android:dividerHeight="1dp"
+        android:drawSelectorOnTop="true"
+        android:headerDividersEnabled="false"
+        android:orientation="horizontal"
+        tools:context="com.example.android.finalfantasynewsapp.MainActivity" />
     <!-- Empty view is only visible when the list has no items. -->
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily=""
         android:layout_centerInParent="true"
         android:textAppearance="?android:textAppearanceMedium"/>
     <ProgressBar

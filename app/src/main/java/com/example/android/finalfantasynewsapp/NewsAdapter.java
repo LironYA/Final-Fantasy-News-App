@@ -29,13 +29,14 @@ public class NewsAdapter extends ArrayAdapter<News> {
                     R.layout.news_list_item, parent, false);
         }
         News currentNews = getItem(position);
+        TextView category = (TextView)listItemView.findViewById(R.id.category);
+        category.setText(currentNews.getSectionName());
         TextView artical_title = (TextView) listItemView.findViewById(R.id.artical_title);
         artical_title.setText(currentNews.getWebTitle());
       //  Date date = new Date (currentNews.getWebPublicationDate());
         TextView publish_date = (TextView)listItemView.findViewById(R.id.publish_date);
       //  String formattedDate = formatDate(date);
         publish_date.setText(currentNews.getWebPublicationDate());
-        //TODO: might need to add a separator
         return listItemView;
     }
     private String formatDate(Date dateObject) {

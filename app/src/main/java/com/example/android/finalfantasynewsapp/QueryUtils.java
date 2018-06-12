@@ -118,7 +118,7 @@ public class QueryUtils {
                 JSONObject currentNews = (JSONObject) newsArray.get(i);
                 // For a given entry, extract the JSONObject associated with the
                 // key called "results"
-               //
+                String sectionName = currentNews.getString("sectionName");
                 // Extract the value for the key called "webTitle"
                 String webTitle = currentNews.getString("webTitle");
                 // Extract the value for the key called "webPublicationDate"
@@ -127,7 +127,7 @@ public class QueryUtils {
                 String url = currentNews.getString("webUrl");
                 String formattedDate = formatDate(webPublicationDate);
 
-                News newsN = new News(webTitle, formattedDate, url);
+                News newsN = new News(sectionName, webTitle, formattedDate, url);
                 news.add(newsN);
             }
         } catch (JSONException e) {
