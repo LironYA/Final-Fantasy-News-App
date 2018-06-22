@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
-    private static final String FF_NEWS = "https://content.guardianapis.com/search?section=games&from-date=2017-01-01&to-date=2018-01-01&order-by=newest&use-date=published&q=%22final%20fantasy%22&api-key=c018038d-3e83-48f8-9208-c09dd8c08614";
+    private static final String FF_NEWS = "https://content.guardianapis.com/search?section=games&from-date=2017-01-01&to-date=2018-01-01&order-by=newest&use-date=published&q=%22final%20fantasy%22&api-key=c018038d-3e83-48f8-9208-c09dd8c08614&show-tags=contributor&show-fields=thumbnail";
     private ProgressBar progressBar;
     private int LOADER_ID = 1;
     // TextView that is displayed when the list is empty
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> news) {
         progressBar.setVisibility(View.GONE);
-        emptyStateTextView.setText("No news found");
+        emptyStateTextView.setText("No news found, please try again later");
         adapter.clear();
 
         if(news != null && !news.isEmpty()) {
