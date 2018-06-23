@@ -11,12 +11,18 @@ public class News {
 
     private String mSectionName;
 
-    public News (String sectionName, String webTitle, String webPublicationDate, String URL) {
+    private String mThumbnail;
+
+    private String mAuthor;
+
+    public News (String thumbnail, String sectionName, String webTitle, String author, String webPublicationDate, String URL) {
 
         mWebTitle  = webTitle;
         mWebPublicationDate = webPublicationDate;
         mWebUrl = URL;
         mSectionName = sectionName;
+        mThumbnail = thumbnail;
+        mAuthor = author;
 
     }
     public String getSectionName() { return mSectionName; }
@@ -29,5 +35,13 @@ public class News {
 
     public String getURL () {
         return mWebUrl;
+    }
+
+    public String getAuthor () {
+        return mAuthor;
+    }
+
+    public String getThumbnail () {
+        return mThumbnail;
     }
 }

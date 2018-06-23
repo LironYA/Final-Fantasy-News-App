@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">Final Fantasy News App</string>
+    <string name="Preferences_title">Settings</string>
+    <string name="settings_min_news">Minimum Displayed News feed</string>
+    <string name="settings_title">Earthquake Settings</string>
+    <string name="settings_min_news_key" translatable="false">Minimum news</string>
+    <string name="settings_min_magnitude_default" translatable="false">0</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_newest_key">Newest</string>
+    <string name="settings_order_by_newest_value">newest</string>
+    <string name="settings_order_by_oldest_key">Oldest</string>
+    <string name="settings_order_by_oldest_value">oldest</string>
+
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_magnitude_value</string>
+    <string name="settings_order_by_magnitude_value" translatable="false">newest</string>
+
+    <string name="settings_order_by_magnitude_label">Newest</string>
+    <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_most_recent_label">Oldest</string>
+    <string name="settings_order_by_most_recent_value" translatable="false">oldest</string>
+    <!-- Query -->
+
+    <string name="settings_query_key">keyword</string>
+    <string name="setting_query_default_value">Final Fantasy</string>
 </resources>

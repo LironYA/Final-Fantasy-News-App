@@ -27,29 +27,29 @@ public class QueryUtils {
     private  QueryUtils() {
     }
 
-        public static List<News> fetchNewsData(String requestUrl){
-            // Create URL object
-            URL url = createUrl(requestUrl);
-            // Perform HTTP request to the URL and receive a JSON response back
-            String jsonResponse = null;
-            try {
-                jsonResponse = makeHttpRequest(url);
-            } catch (IOException e) {
-                Log.e("QueryUtils.this", "Problem making the HTTP request.", e);
-            }
-            List<News> news = extractFeatureFromJson(jsonResponse);
-            return news;
+    public static List<News> fetchNewsData(String requestUrl){
+        // Create URL object
+        URL url = createUrl(requestUrl);
+        // Perform HTTP request to the URL and receive a JSON response back
+        String jsonResponse = null;
+        try {
+            jsonResponse = makeHttpRequest(url);
+        } catch (IOException e) {
+            Log.e("QueryUtils.this", "Problem making the HTTP request.", e);
         }
-        // Returns new URL object from the given string URL.
-        private static URL createUrl(String stringUrl) {
-            URL url = null;
-            try {
-                url = new URL(stringUrl);
-            } catch (MalformedURLException e) {
-                Log.e("QueryUtils", "Problem building the URL ", e);
-            }
-            return url;
+        List<News> news = extractFeatureFromJson(jsonResponse);
+        return news;
+    }
+    // Returns new URL object from the given string URL.
+    private static URL createUrl(String stringUrl) {
+        URL url = null;
+        try {
+            url = new URL(stringUrl);
+        } catch (MalformedURLException e) {
+            Log.e("QueryUtils", "Problem building the URL ", e);
         }
+        return url;
+    }
     // Make an HTTP request to the given URL and return a String as the response.
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
@@ -123,13 +123,30 @@ public class QueryUtils {
                 String webTitle = currentNews.getString("webTitle");
                 // Extract the value for the key called "webPublicationDate"
                 String webPublicationDate = currentNews.getString("webPublicationDate");
-                // Extract the value for the key called "url"
-                String url = currentNews.getString("webUrl");
                 String formattedDate = formatDate(webPublicationDate);
+                // Extract the value for the key called "webUrl"
+                String url = currentNews.getString("webUrl");
+                JSONObject fields = currentNews.getJSONObject("fields");
+                String thumbnail = fields.getString("thumbnail");
+                JSONArray tagsArray = currentNews.getJSONArray("tags");
 
-                News newsN = new News(sectionName, webTitle, formattedDate, url);
+                String author;
+                //Get the tag value at the 0th place of the array
+                if (tagsArray.getJSONObject(0) != null) {
+                    JSONObject tags = tagsArray.getJSONObject(0);
+                    author = tags.getString("webTitle");
+
+                } else {
+                    author = "No author for this artical";
+                }
+
+                // Create a new object with
+                News newsN = new News(thumbnail, sectionName, webTitle, author, formattedDate, url);
+
+                // Add the new object to the list of news
                 news.add(newsN);
             }
+
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
@@ -148,15 +165,12 @@ public class QueryUtils {
 
         try {
             Date newDate = format.parse(date);
-        format = new SimpleDateFormat("MMM dd HH:mm");
-        artical_date = format.format(newDate);
-    }
-    catch (ParseException  e) {
-                Log.e("QueryUtils.this", "Date formatting error");
-    }
+            format = new SimpleDateFormat("EEE, MMM dd yyyy 'at' HH:mm ");
+            artical_date = format.format(newDate);
+        }
+        catch (ParseException  e) {
+            Log.e("QueryUtils.this", "Date formatting error");
+        }
         return artical_date;
 
-}}
-
-
-
+    }}
